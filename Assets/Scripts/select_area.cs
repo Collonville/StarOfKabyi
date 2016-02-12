@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿﻿using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -20,14 +20,14 @@ public class select_area : MonoBehaviour
     GameObject decisionObject;
     void Start()
     {
-        nearistObject=null;
+        nearistObject = null;
         decisionObject = null;
         nowSelected = null;
         nowPerticle = null;
     }
     void Update()
     {
-        float nearistDist=-1;
+        float nearistDist = -1;
         var myPosition = transform.position;
         var isEnter = Input.GetKey(KeyCode.Return);
         foreach (GameObject obj in intoObjectList)
@@ -41,9 +41,9 @@ public class select_area : MonoBehaviour
                     decideObject(true);
                 }
             }
-            if (nearistDist>Vector3.Distance(myPosition, obj.transform.position))
+            if (nearistDist > Vector3.Distance(myPosition, obj.transform.position))
             {
-                nearistDist = Vector3.Distance(myPosition,obj.transform.position);
+                nearistDist = Vector3.Distance(myPosition, obj.transform.position);
                 nearistObject = obj;
                 if (decisionObject != null)
                 {
@@ -64,13 +64,13 @@ public class select_area : MonoBehaviour
         {
             intoObjectList.Add(collision.gameObject);
         }
-       
+
     }
 
     void OnTriggerExit(Collider collision)
     {
         intoObjectList.Remove(collision.gameObject);
-        if (collision.gameObject==nearistObject)
+        if (collision.gameObject == nearistObject)
         {
             nearistObject = null;
             decideObject(false);
@@ -96,12 +96,12 @@ public class select_area : MonoBehaviour
     }
     void perticleManager()
     {
-        Vector3 offset = new Vector3(0,3,0);
-        if (decisionObject!=null)
+        Vector3 offset = new Vector3(0, 3, 0);
+        if (decisionObject != null)
         {
             if (nowPerticle == null)
             {
-                nowPerticle = (GameObject)Instantiate(perticle,decisionObject.transform.position+offset,Quaternion.Euler(270,0,0));
+                nowPerticle = (GameObject)Instantiate(perticle, decisionObject.transform.position + offset, Quaternion.Euler(270, 0, 0));
                 nowPerticle.transform.parent = decisionObject.transform;
             }
             if (nowSelected == null)
@@ -111,7 +111,7 @@ public class select_area : MonoBehaviour
             if (nowSelected != decisionObject)
             {
                 Destroy(nowPerticle);
-                nowPerticle = (GameObject)Instantiate(perticle, decisionObject.transform.position+offset,Quaternion.Euler(270, 0, 0));
+                nowPerticle = (GameObject)Instantiate(perticle, decisionObject.transform.position + offset, Quaternion.Euler(270, 0, 0));
                 nowPerticle.transform.parent = decisionObject.transform;
             }
             nowSelected = decisionObject;
