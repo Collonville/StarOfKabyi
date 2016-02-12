@@ -221,6 +221,5 @@ Temp
 *.unityproj
 *.sln
 *.userprefs
-Assets/Asset/SimpleTown
-Assets/Asset/UnityChan
-Assets/Asset/UnityVS
+Assets/Asset/
+Assets/Material/Font/
